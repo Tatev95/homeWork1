@@ -1,6 +1,6 @@
-package lesson5;
+package homework;
 
-public class homework1 {
+public class HomeWork1 {
     public static void main(String[] args) {
         //ex. 1
         int x = 10, y = 20;
@@ -23,7 +23,8 @@ public class homework1 {
         int a = 5;
         int b = 7;
         int result = 0;
-        System.out.println(result = a + b);
+        result =  a+b;
+        System.out.println(result);
 
 
         // ex. 4
