@@ -1,6 +1,6 @@
-package lesson5;
+package homework;
 
-public class homework1 {
+public class HomeWork1 {
     public static void main(String[] args) {
         //ex. 1
         int x = 10, y = 20;
