@@ -67,5 +67,35 @@ public class HomeWork2 {
             System.out.println();
         }
 
+        //erkchap zangvacner
+        int[][] twoD = new int[4][5];
+        int k = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                twoD[i][j] = k;
+                k++;
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print(twoD[i][j] + " ");
+            }
+            System.out.println(" ");
+        }
+
+
+        int a = 1 + 1;
+        int b = a * 3;
+        int c = b / 4;
+        int d = c - a;
+        int e = -d;
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println(e);
     }
+
 }
+
