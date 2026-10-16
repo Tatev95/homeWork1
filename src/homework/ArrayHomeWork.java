@@ -74,22 +74,18 @@ public class ArrayHomeWork {
 
         //Bonus 1 — Գտնել երկրորդ ամենամեծ թիվը
 
-        int[] numbers4 = {4, 9, 2, 15, 7, 15, 3, 11, 6, 8};
+        //int[] numbers4 = {4, 9, 2, 15, 7, 15, 3, 11, 6};
+        int[] numbers4 = {13, 12, 11, 10, 15} ;
         int max = 0;
-        int value = 0;
         int secondMax = 0;
 
         for (int i = 0; i < numbers4.length; i++) {
             if (numbers4[i] > max) {
                 max = numbers4[i];
                 for (int j = 0; j < numbers4.length; j++) {
-                    if (numbers4[j] < max) {
-                        value = numbers4[j];
-                        for (int k = 0; k < numbers4.length; k++) {
-                            if (numbers4[k] > value && numbers4[k] < max) {
-                                secondMax = numbers4[k];
-                            }
-                        }
+                    if (numbers4[j] < max && numbers4[j] > secondMax) {
+                        secondMax = numbers4[j];
+
                     }
                 }
             }
