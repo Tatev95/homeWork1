@@ -1,90 +1,7 @@
 package homework;
 
 public class CharArrayUtil {
-
-    //methods part
-    public static int calcSimvols(char[] mainArray, char[] compareArray) {
-        int simvolCount = 0;
-        for (int i = 0; i < mainArray.length; i++) {
-            for (int j = 0; j < compareArray.length; j++) {
-                if (mainArray[i] == compareArray[j]) simvolCount++;
-            }
-        }
-        return simvolCount;
-    }
-
-    public static char[] reverseArray(char[] array) {
-        for (int i = 0; i < array.length / 2; i++) {
-            char firstEl = array[i];
-            array[i] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = firstEl;
-        }
-        return array;
-
-    }
-
-    public static char[] toUpperCase(char[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] >= 'a' && array[i] <= 'z') {
-                array[i] -= 32;
-            }
-        }
-        ;
-        return array;
-
-    }
-
-    public static char[] toLowerCase(char[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] >= 'A' && array[i] <= 'Z') {
-                array[i] += 32;
-            }
-        }
-        ;
-        return array;
-
-    }
-
-    public static char[] replaceChar(char[] array, char replacing, char replacedChar) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == replacing) {
-                array[i] = replacedChar;
-            }
-        }
-        ;
-        return array;
-
-    }
-
-    public static boolean isPalindrome(char[] array) {
-        for (int i = 0; i < array.length / 2; i++) {
-            if (array[i] != array[array.length - 1 - i]) {
-                return false;
-            }
-        }
-        return true;
-
-    }
-
-    public static boolean isEqual(char[] first, char[] second) {
-        if (first.length != second.length) {
-            System.out.println("Arrays are NOT equal");
-            return false;
-        }
-        for (int i = 0; i < first.length; i++) {
-            if (first[i] != second[i]) {
-                System.out.println("arrays are NOTt equal");
-                return false;
-            }
-
-        }
-        return true;
-    }
-
-
-    //end of methods part
     public static void main(String[] args) {
-
         char[] chars = {
                 'J', 'a', 'v', 'a', ' ',
                 'i', 's', ' ', 'f', 'u', 'n', '!'
@@ -99,7 +16,7 @@ public class CharArrayUtil {
 
         //Խնդիր 2 — Հաշվել սիմվոլների քանակը
         int charCount = 0;
-        for (int i = 0; i <= length; i++) {
+        for (int i = 0; i <= chars.length; i++) {
             charCount = +i;
         }
         System.out.println("Characters count:" + charCount);
@@ -130,7 +47,7 @@ public class CharArrayUtil {
         System.out.println("Vowels count:" + vowelsCount);
 //2-րդ տարբերակ
 
-        System.out.println(calcSimvols(chars, vowels) + " " + "Vowels count in a method");
+        System.out.println(countMatchingCharacters(chars, vowels) + " " + "Vowels count in a method");
 
         //Խնդիր 5 — Հաշվել բաղաձայնների քանակը
         char[] consonant = {'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z',
@@ -145,7 +62,7 @@ public class CharArrayUtil {
         System.out.println("consonant count:" + consonantCount);
 
         //2-րդ տարբերակ
-        System.out.println(calcSimvols(chars, consonant) + " " + "consonant count in a method");
+        System.out.println(countMatchingCharacters(chars, consonant) + " " + "consonant count in a method");
 
 
         //Խնդիր 6 — Հաշվել բացատների քանակը
@@ -163,17 +80,12 @@ public class CharArrayUtil {
         System.out.println("spaces count:" + spacesCount);
 
         //2-րդ տարբերակ
-        System.out.println(calcSimvols(chars, spaces) + " " + "spaces count in a method");
+        System.out.println(countMatchingCharacters(chars, spaces) + " " + "spaces count in a method");
 
         //Խնդիր 7 — Շրջել սիմվոլների հերթականությունը (Reverse)
-        char[] copyArray = new char[chars.length];
-        for (int i = 0; i < chars.length; i++) {
-            copyArray[i] = chars[i];
 
-        }
-        reverseArray(copyArray);
-        for (int i = 0; i < copyArray.length; i++) {
-            System.out.print(copyArray[i]);
+        for (int i = chars.length - 1; i >= 0; i--) {
+            System.out.print(chars[i]);
         }
 
         System.out.println();
@@ -254,7 +166,95 @@ public class CharArrayUtil {
                 System.out.print(repeatChars[i]);
             }
         }
+        System.out.println();
+        int a = 10;
+        int b = a;
+        a = 20;
+        System.out.println(b + "b");
+        System.out.println(a + "a");
     }
+
+    //methods part
+    public static int countMatchingCharacters(char[] source, char[] targets) {
+        int simvolCount = 0;
+        for (int i = 0; i < source.length; i++) {
+            for (int j = 0; j < targets.length; j++) {
+                if (source[i] == targets[j]) simvolCount++;
+            }
+        }
+        return simvolCount;
+    }
+
+    public static char[] reverseArray(char[] array) {
+        for (int i = 0; i < array.length / 2; i++) {
+            char firstEl = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = firstEl;
+        }
+        return array;
+
+    }
+
+    public static char[] toUpperCase(char[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= 'a' && array[i] <= 'z') {
+                array[i] -= 32;
+            }
+        }
+        ;
+        return array;
+
+    }
+
+    public static char[] toLowerCase(char[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= 'A' && array[i] <= 'Z') {
+                array[i] += 32;
+            }
+        }
+        ;
+        return array;
+
+    }
+
+    public static char[] replaceChar(char[] array, char replacing, char replacedChar) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == replacing) {
+                array[i] = replacedChar;
+            }
+        }
+        ;
+        return array;
+
+    }
+
+    public static boolean isPalindrome(char[] array) {
+        for (int i = 0; i < array.length / 2; i++) {
+            if (array[i] != array[array.length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public static boolean isEqual(char[] first, char[] second) {
+        if (first.length != second.length) {
+            System.out.println("Arrays are NOT equal");
+            return false;
+        }
+        for (int i = 0; i < first.length; i++) {
+            if (first[i] != second[i]) {
+                System.out.println("arrays are NOTt equal");
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+
+    //end of methods part
 }
 
 
