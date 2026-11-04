@@ -1,4 +1,4 @@
-package homework;
+package homework.dynamicarray;
 
 public class DynamicArray {
     private int[] array = new int[10];
@@ -19,13 +19,11 @@ public class DynamicArray {
     }
 
     private void extend() {
-        if (size == array.length) {
-            int[] newArray = new int[array.length + 10];
-            for (int i = 0; i < size; i++) {
-                newArray[i] = array[i];
-            }
-            array = newArray;
+        int[] newArray = new int[array.length + 10];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = array[i];
         }
+        array = newArray;
     }
 
     public int getByIndex(int index) {
