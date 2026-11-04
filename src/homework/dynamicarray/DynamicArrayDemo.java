@@ -2,6 +2,7 @@ package homework.dynamicarray;
 
 public class DynamicArrayDemo {
     public static void main(String[] args) {
+
         DynamicArray da = new DynamicArray();
 
 
@@ -30,5 +31,8 @@ public class DynamicArrayDemo {
         System.out.println(da.getByIndex(0));
         System.out.println(da.getByIndex(44));
         System.out.println(da.getByIndex(-1));
+
+        System.out.println(da.pop());
+
     }
 }

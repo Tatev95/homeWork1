@@ -12,6 +12,15 @@ public class DynamicArray {
 
     }
 
+    public int pop() {
+        if (size < 0) {
+            System.out.println("Array is empty");
+            return 0;
+        } else {
+            return array[size--];
+        }
+    }
+
     public void print() {
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
@@ -34,3 +43,4 @@ public class DynamicArray {
         return -1;
     }
 }
+
