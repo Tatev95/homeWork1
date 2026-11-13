@@ -1,7 +1,5 @@
 package homework.braceChecker;
 
-import homework.dynamicarray.DynamicArray;
-
 public class BraceChecker {
     private String text;
 
@@ -12,7 +10,6 @@ public class BraceChecker {
     public void check() {
         Stack stack = new Stack();
 
-        boolean isCorrectPair = true;
         char closeBrace = ' ';
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == '[' || text.charAt(i) == '{' || text.charAt(i) == '(') {
@@ -55,7 +52,7 @@ public class BraceChecker {
                 }
             }
         }
-        if (stack.getSize() == 0 && isCorrectPair) {
+        if (stack.getSize() == 0) {
             System.out.println("ճիշտ է");
         }
         if (stack.getSize() > 0) {
