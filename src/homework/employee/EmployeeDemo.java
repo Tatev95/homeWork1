@@ -14,6 +14,8 @@ public class EmployeeDemo {
     private static final String PRINT_ALL_EMPLOYEES = "2";
     private static final String SEARCH_EMPLOYEE_BY_ID = "3";
     private static final String SEARCH_EMPLOYEE_BY_COMPANY = "4";
+    private static final String SEARCH_EMPLOYEE_BY_MIN_SALARY = "5";
+    private static final String DELETE_EMPLOYEE_BY_ID = "6";
 
 
     public static void main(String[] args) {
@@ -39,6 +41,12 @@ public class EmployeeDemo {
                 case SEARCH_EMPLOYEE_BY_COMPANY:
                     searchEmployeeByCompany();
                     break;
+                case SEARCH_EMPLOYEE_BY_MIN_SALARY:
+                    searchEmployeeByMinSalary();
+                    break;
+                case DELETE_EMPLOYEE_BY_ID:
+                    deleteEmployee();
+                    break;
                 default:
                     System.out.println("Invalid command. Please try again.");
 
@@ -53,12 +61,27 @@ public class EmployeeDemo {
         System.out.println("Please input " + PRINT_ALL_EMPLOYEES + " for print all Employee");
         System.out.println("Please input " + SEARCH_EMPLOYEE_BY_ID + " for search Employee by id");
         System.out.println("Please input " + SEARCH_EMPLOYEE_BY_COMPANY + " for search Employee by company");
+        System.out.println("Please input " + SEARCH_EMPLOYEE_BY_MIN_SALARY + " for search Employee by minimum salary");
+        System.out.println("Please input " + DELETE_EMPLOYEE_BY_ID + " for DELETING Employee by ID");
     }
 
     private static void searchEmployeeById() {
         System.out.println("Please input employee id");
         String id = scanner.nextLine();
         employeeStorage.searchById(id);
+    }
+
+    private static void searchEmployeeByMinSalary() {
+        System.out.println("Input minimum salary range");
+        String minSal = scanner.nextLine();
+        int minimumSalaryValue = Integer.parseInt(minSal);
+        employeeStorage.searchBySalary(minimumSalaryValue);
+    }
+
+    private static void deleteEmployee() {
+        System.out.println("Please input employee's id for DELETING");
+        String employeeId = scanner.nextLine();
+        employeeStorage.deleteEmployeeById(employeeId);
     }
 
     private static void searchEmployeeByCompany() {
@@ -101,7 +124,7 @@ public class EmployeeDemo {
                 employeeDataArr[0],
                 employeeDataArr[1],
                 employeeDataArr[2],
-                employeeDataArr[3],
+                Integer.parseInt(employeeDataArr[3]),
                 employeeDataArr[4],
                 employeeDataArr[5]
         );

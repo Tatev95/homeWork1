@@ -4,30 +4,40 @@ import homework.employee.model.Employee;
 
 public class EmployeeStorage {
 
-    private Employee[] array = new Employee[10];
+    private Employee[] array = new Employee[3];
     private int size = 0;
 
 
     public void add(Employee emp) {
         boolean isFoundEmployee = false;
-
-//        System.out.println(emp.getEmplyeeId());
         for (int i = 0; i < size; i++) {
-            System.out.println((array[i].getEmplyeeId()) + "unecac id");
-            System.out.println();
-            System.out.println(emp.getEmplyeeId()+ "ekac id");
             if (array[i].getEmplyeeId().equalsIgnoreCase(emp.getEmplyeeId())) {
-                System.out.println("ayd id-ov empl ka arden");
                 isFoundEmployee = true;
-                return;
-            } else {
-                if (size == array.length) {
-                    extend();
-                }
-                array[size++] = emp;
             }
         }
+        if (!isFoundEmployee) {
+            if (size == array.length) {
+                extend();
+            }
+            array[size++] = emp;
+        } else System.out.println("Տվյալ id- ով աշխատակից կա արդեն");
 
+    }
+    public void deleteEmployeeById(String  id){
+        for (int i = 0; i < size; i++) {
+            if (array[i].getEmplyeeId().equalsIgnoreCase(id)) {
+                System.out.println();
+                for (int j = i+1; j < size-1; j++) {
+                    array[j] = array[j+1];
+                }
+                size--;
+                System.out.println("Empoyee Deleted");
+                return;
+            }
+
+            System.out.println(array[i]);
+
+        }
     }
 
     private void extend() {
@@ -72,6 +82,19 @@ public class EmployeeStorage {
         }
         if (!isFoundEmployee) {
             System.out.println("No employees found for company " + company);
+        }
+    }
+    public void searchBySalary(int minSalary) {
+        boolean isFoundEmployee = false;
+
+        for (int i = 0; i < size; i++) {
+            if (array[i].getSalary() <= minSalary) {
+                System.out.println(array[i] + " ");
+                isFoundEmployee = true;
+            }
+        }
+        if (!isFoundEmployee) {
+            System.out.println("No employees found for company " + minSalary);
         }
     }
 
