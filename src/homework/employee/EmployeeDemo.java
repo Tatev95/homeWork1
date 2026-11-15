@@ -1,28 +1,23 @@
 package homework.employee;
 
+import homework.employee.model.Company;
 import homework.employee.model.Employee;
+import homework.employee.storage.CompanyStorage;
 import homework.employee.storage.EmployeeStorage;
 
 import java.util.Scanner;
 
-public class EmployeeDemo {
+public class EmployeeDemo implements Comands {
     private static Scanner scanner = new Scanner(System.in);
     private static EmployeeStorage employeeStorage = new EmployeeStorage();
-
-    private static final String EXIT = "0";
-    private static final String ADD_EMPLOYEE = "1";
-    private static final String PRINT_ALL_EMPLOYEES = "2";
-    private static final String SEARCH_EMPLOYEE_BY_ID = "3";
-    private static final String SEARCH_EMPLOYEE_BY_COMPANY = "4";
-    private static final String SEARCH_EMPLOYEE_BY_MIN_SALARY = "5";
-    private static final String DELETE_EMPLOYEE_BY_ID = "6";
-
+    private static CompanyStorage companyStorage = new CompanyStorage();
 
     public static void main(String[] args) {
         boolean isRun = true;
+        initData();
 
         while (isRun) {
-            printCommands();
+            Comands.printCommands();
 
             String command = scanner.nextLine();
             switch (command) {
@@ -38,15 +33,53 @@ public class EmployeeDemo {
                 case SEARCH_EMPLOYEE_BY_ID:
                     searchEmployeeById();
                     break;
+
+                case ADD_COMPANY:
+                    addCompany();
+                    break;
+
+                case SEARCH_COMPANY_BY_ID:
+                    searchCompanyById();
+                    break;
+
+                case PRINT_ALL_COMPANIES:
+                    companyStorage.print();
+                    break;
                 case SEARCH_EMPLOYEE_BY_COMPANY:
                     searchEmployeeByCompany();
                     break;
+                case SEARCH_EMPLOYEE_BY_COMPANY_ID:
+                    searchEmployeeByCompanyId();
+                    break;
+
+
                 case SEARCH_EMPLOYEE_BY_MIN_SALARY:
                     searchEmployeeByMinSalary();
                     break;
                 case DELETE_EMPLOYEE_BY_ID:
                     deleteEmployee();
                     break;
+                case CHANGE_EMPLOYEES_COMPANY:
+                    changeEmployeesCompany();
+                    break;
+                case PRINT_EMPLOYEE_COMPANY:
+                    printEmployeeCompany();
+                    break;
+                case COUNT_EMPLOYEES_BY_COMPANY:
+                    countEmployeesByCompany();
+                    break;
+                case CALCULATE_TOTAL_SALARY_BY_COMPANY:
+                    calculateTotalSalary();
+                    break;
+
+                case FIND_EMPLOYEE_WITH_HIGHEST_SALARY:
+                    findEmloyeeWithHighestSalary();
+                    break;
+
+                case DELETE_COMPANY:
+                    deletCompany();
+                    break;
+
                 default:
                     System.out.println("Invalid command. Please try again.");
 
@@ -55,20 +88,60 @@ public class EmployeeDemo {
         }
     }
 
-    private static void printCommands() {
-        System.out.println("Please input " + EXIT + " for EXIT");
-        System.out.println("Please input " + ADD_EMPLOYEE + " for add Employee");
-        System.out.println("Please input " + PRINT_ALL_EMPLOYEES + " for print all Employee");
-        System.out.println("Please input " + SEARCH_EMPLOYEE_BY_ID + " for search Employee by id");
-        System.out.println("Please input " + SEARCH_EMPLOYEE_BY_COMPANY + " for search Employee by company");
-        System.out.println("Please input " + SEARCH_EMPLOYEE_BY_MIN_SALARY + " for search Employee by minimum salary");
-        System.out.println("Please input " + DELETE_EMPLOYEE_BY_ID + " for DELETING Employee by ID");
+
+    private static void addCompany() {
+        System.out.println("Please input company id name,industry,country");
+
+        String companyDataStr = scanner.nextLine();
+        String[] companyDataArr = companyDataStr.split(",");
+
+        Company comp = new Company();
+
+        comp.setCompanyId(companyDataArr[0]);
+        comp.setName(companyDataArr[1]);
+        comp.setIndustry(companyDataArr[2]);
+        comp.setCountry(companyDataArr[3]);
+
+        companyStorage.add(comp);
+
+        System.out.println("Company added!");
+
     }
 
     private static void searchEmployeeById() {
         System.out.println("Please input employee id");
         String id = scanner.nextLine();
         employeeStorage.searchById(id);
+    }
+
+    private static void searchCompanyById() {
+        System.out.println("Please input Company id");
+        String id = scanner.nextLine();
+        companyStorage.searchById(id);
+    }
+
+    private static void countEmployeesByCompany() {
+        System.out.println("Please input Company id");
+        String id = scanner.nextLine();
+        employeeStorage.getEmployeesByCompanyId(id);
+    }
+
+    private static void calculateTotalSalary() {
+        System.out.println("Please input Company id for calculate total salary");
+        String id = scanner.nextLine();
+        employeeStorage.calculateTotalSalary(id);
+    }
+
+
+    private static void printEmployeeCompany() {
+        System.out.println("Please input Employee id");
+        String id = scanner.nextLine();
+        Employee employee = employeeStorage.getEmployeeById(id);
+        if (employee == null) {
+            System.out.println("Նման id-ով աշխատակից չի գտնվել");
+        }
+        System.out.println(employee.getCompany());
+
     }
 
     private static void searchEmployeeByMinSalary() {
@@ -84,10 +157,57 @@ public class EmployeeDemo {
         employeeStorage.deleteEmployeeById(employeeId);
     }
 
-    private static void searchEmployeeByCompany() {
-        System.out.println("Please input employee's company");
+    private static void deletCompany() {
+        System.out.println("Please input Company's id for DELETING");
         String company = scanner.nextLine();
-        employeeStorage.searchByCompany(company);
+        companyStorage.deleteCompanyById(company);
+    }
+
+    private static void searchEmployeeByCompany() {
+        System.out.println("Please input Company name");
+        String company = scanner.nextLine();
+        employeeStorage.searchByCompanyByName(company);
+    }
+
+    private static void searchEmployeeByCompanyId() {
+        System.out.println("Please input Company Id to show All Employees");
+        String id = scanner.nextLine();
+        employeeStorage.searchEmployeesByCompanyId(id);
+    }
+
+    private static void findEmloyeeWithHighestSalary() {
+        employeeStorage.findHighestSlaryEmployee();
+    }
+
+    private static void initData() {
+        Company ItSpace = new Company("1", "It Space", "IT", "Armenia");
+        Company MC = new Company("2", "MC", "Sales", "Armenia");
+
+        companyStorage.add(ItSpace);
+        companyStorage.add(MC);
+
+        Employee employee1 = new Employee("po1", "poxosyan", "11", 12, ItSpace, "dev");
+        Employee employee2 = new Employee("po2", "poxosyan", "22", 12, MC, "sales");
+
+        employeeStorage.add(employee1);
+        employeeStorage.add(employee2);
+
+    }
+
+    public static void changeEmployeesCompany() {
+        System.out.println("Please input EmployeeID");
+        String empId = scanner.nextLine();
+
+        System.out.println("Please input new Company ID");
+        String compId = scanner.nextLine();
+        Company newComp = companyStorage.getCompanyById(compId);
+
+        if (newComp == null) {
+            System.out.println("New company not Found");
+            return;
+        }
+        employeeStorage.changeEmployeeCompany(empId, newComp);
+
     }
 
     private static void addEmployee() {
@@ -115,9 +235,14 @@ public class EmployeeDemo {
             }
             scanner.nextLine();
         }
+        System.out.println("Please input Company Id");
 
-        System.out.println("Please input company");
         String employeeCompany = scanner.nextLine();
+        Company company = companyStorage.getCompanyById(employeeCompany);
+        if (company == null) {
+            System.out.println("please input valid company id");
+            return;
+        }
 
 
         System.out.println("Please input position");
@@ -129,8 +254,9 @@ public class EmployeeDemo {
                 employeeSurName,
                 employeeId,
                 employeeSalary,
-                employeeCompany,
+                company,
                 employeePosition
+
         );
         employeeStorage.add(employee);
 
