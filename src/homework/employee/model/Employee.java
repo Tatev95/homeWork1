@@ -42,7 +42,7 @@ public class Employee {
         return employeeId;
     }
 
-    public void setEmplyeeId(String emplyeeId) {
+    public void setEmployeeId(String emplyeeId) {
         this.employeeId = emplyeeId;
     }
 
