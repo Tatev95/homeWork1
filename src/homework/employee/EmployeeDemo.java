@@ -101,8 +101,20 @@ public class EmployeeDemo {
         String employeeId = scanner.nextLine();
 
 
-        System.out.println("Please input salary");
-        String employeeSalary = scanner.nextLine();
+        int employeeSalary = 0;
+        boolean isValid = false;
+
+        while (!isValid) {
+            System.out.println("Please input salary");
+
+            if (scanner.hasNextInt()) {
+                employeeSalary = scanner.nextInt();
+                isValid = true;
+            } else {
+                System.out.println("Please enter numbers only!");
+            }
+            scanner.nextLine();
+        }
 
         System.out.println("Please input company");
         String employeeCompany = scanner.nextLine();
@@ -116,11 +128,10 @@ public class EmployeeDemo {
                 employeeName,
                 employeeSurName,
                 employeeId,
-                Integer.parseInt(employeeSalary),
+                employeeSalary,
                 employeeCompany,
                 employeePosition
         );
-
         employeeStorage.add(employee);
 
     }
