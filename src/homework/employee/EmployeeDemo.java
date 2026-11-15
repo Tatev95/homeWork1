@@ -111,25 +111,17 @@ public class EmployeeDemo {
         System.out.println("Please input position");
         String employeePosition = scanner.nextLine();
 
-        String employeeDataStr = employeeName + "," +
-                employeeSurName + "," +
-                employeeId + "," +
-                employeeSalary + "," +
-                employeeCompany + "," +
-                employeePosition;
-
-        String[] employeeDataArr = employeeDataStr.split(",");
 
         Employee employee = new Employee(
-                employeeDataArr[0],
-                employeeDataArr[1],
-                employeeDataArr[2],
-                Integer.parseInt(employeeDataArr[3]),
-                employeeDataArr[4],
-                employeeDataArr[5]
+                employeeName,
+                employeeSurName,
+                employeeId,
+                Integer.parseInt(employeeSalary),
+                employeeCompany,
+                employeePosition
         );
+
         employeeStorage.add(employee);
-        System.out.println("Employee added!!!");
 
     }
 
