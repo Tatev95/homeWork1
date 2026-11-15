@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Employee {
     private String name;
     private String surname;
-    private String emplyeeId;
+    private String employeeId;
     private int salary;
     private String company;
     private String position;
@@ -13,10 +13,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String surname, String emplyeeId, int salary, String company, String position) {
+    public Employee(String name, String surname, String employeeId, int salary, String company, String position) {
         this.name = name;
         this.surname = surname;
-        this.emplyeeId = emplyeeId;
+        this.employeeId = employeeId;
         this.salary = salary;
         this.company = company;
         this.position = position;
@@ -38,12 +38,12 @@ public class Employee {
         this.surname = surname;
     }
 
-    public String getEmplyeeId() {
-        return emplyeeId;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
     public void setEmplyeeId(String emplyeeId) {
-        this.emplyeeId = emplyeeId;
+        this.employeeId = emplyeeId;
     }
 
     public int getSalary() {
@@ -76,12 +76,12 @@ public class Employee {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(emplyeeId, employee.emplyeeId);
+        return Objects.equals(employeeId, employee.employeeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(emplyeeId);
+        return Objects.hash(employeeId);
     }
 
     @Override
@@ -92,6 +92,7 @@ public class Employee {
                 ", salary='" + salary + '\'' +
                 ", company='" + company + '\'' +
                 ", position='" + position + '\'' +
+                ", id='" + employeeId + '\'' +
                 '}';
 
     }

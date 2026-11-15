@@ -11,7 +11,7 @@ public class EmployeeStorage {
     public void add(Employee emp) {
         boolean isFoundEmployee = false;
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmplyeeId().equalsIgnoreCase(emp.getEmplyeeId())) {
+            if (array[i].getEmployeeId().equalsIgnoreCase(emp.getEmployeeId())) {
                 isFoundEmployee = true;
             }
         }
@@ -20,24 +20,25 @@ public class EmployeeStorage {
                 extend();
             }
             array[size++] = emp;
+            System.out.println("Employee added!!!");
         } else System.out.println("Տվյալ id- ով աշխատակից կա արդեն");
 
     }
-    public void deleteEmployeeById(String  id){
+
+    public void deleteEmployeeById(String id) {
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmplyeeId().equalsIgnoreCase(id)) {
+            if (array[i].getEmployeeId().equalsIgnoreCase(id)) {
                 System.out.println();
-                for (int j = i+1; j < size-1; j++) {
-                    array[j] = array[j+1];
+                for (int j = i ; j < size - 1; j++) {
+                    array[j] = array[j + 1];
                 }
+                array[size - 1] = null;
                 size--;
                 System.out.println("Empoyee Deleted");
                 return;
             }
+                    }
 
-            System.out.println(array[i]);
-
-        }
     }
 
     private void extend() {
@@ -61,7 +62,7 @@ public class EmployeeStorage {
     public void searchById(String id) {
         boolean isFoundEmployee = false;
         for (int i = 0; i < size; i++) {
-            if (array[i].getEmplyeeId().equalsIgnoreCase(id)) {
+            if (array[i].getEmployeeId().equalsIgnoreCase(id)) {
                 System.out.println(array[i] + " ");
                 isFoundEmployee = true;
             }
@@ -84,11 +85,12 @@ public class EmployeeStorage {
             System.out.println("No employees found for company " + company);
         }
     }
+
     public void searchBySalary(int minSalary) {
         boolean isFoundEmployee = false;
 
         for (int i = 0; i < size; i++) {
-            if (array[i].getSalary() <= minSalary) {
+            if (array[i].getSalary() >= minSalary) {
                 System.out.println(array[i] + " ");
                 isFoundEmployee = true;
             }
